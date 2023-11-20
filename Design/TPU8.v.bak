@@ -1,0 +1,250 @@
+module TPU12
+#(parameter Matrix_Size=12, parameter Data_Width=8)
+(
+
+	input	clk,
+	input	start,
+	input 	reset,
+	input	waitrequest,
+	input	read,
+	input [8:0]	output_address,
+	input [95:0] inputA,
+	input [95:0] inputB,
+	input [9:0] blocks, // Base is 4. block 1 = 4x4. block 3 = 12x12
+
+
+	output reg done,
+	output reg [31:0] DataOutput
+
+);
+
+
+// * Internal Signals
+
+genvar i;
+genvar k;
+
+reg started;
+
+// Internal Timer
+reg [11:0] internal_timer;
+reg [11:0] internal_timer_c;
+
+// Output Buffer
+reg signed [31:0] Buffer[143:0];
+
+// Clear Signal
+reg [((Matrix_Size*2)-2):0] rst;
+
+// Input A & B
+reg signed [(Data_Width-1):0] inA[(Matrix_Size-1):0];
+reg signed [(Data_Width-1):0] inB[(Matrix_Size-1):0];
+reg signed [7:0] inA_c[11:0], inB_c[11:0];
+
+// Temporary buffer from MAC
+wire signed [31:0] result[143:0];
+
+// Latch
+always @(negedge clk) begin
+	internal_timer_c <= internal_timer;
+end
+
+always @(posedge clk) begin
+if (~reset) begin
+	// Start
+	if ((start || started) && ~done) begin
+	// Check Wait
+		if (~waitrequest) begin
+			if (internal_timer == ((12*blocks))) begin 
+				done <= 1;
+			end
+			else begin 
+				internal_timer <= internal_timer_c + 1'b1;
+				done <= 0;
+			end
+		end
+		started = 1;
+	end
+	else begin
+		internal_timer <= internal_timer_c;
+		done <= 0;
+		started <= 0;
+	end
+end
+else begin
+	internal_timer <= 0;
+	done <= 0;
+	started <= 0;
+end
+end
+
+// Matrix To MAC
+generate for (i = 0; i < Matrix_Size; i = i + 1) begin : InputMACs
+	always @(posedge clk) begin
+		if (~waitrequest) begin
+			if (internal_timer != 0) begin
+				inA[i] <= inputA[((i+1)*Data_Width - 1):(i*Data_Width)];
+				inB[i] <= inputB[((i+1)*Data_Width - 1):(i*Data_Width)];
+			end
+			else begin
+				inA[i] <= 0;
+				inB[i] <= 0;
+			end
+		end
+		else begin
+			inA[i] <= inA_c[i];
+			inB[i] <= inB_c[i];
+		end
+		end
+	end
+endgenerate
+
+// Latches
+generate for (i = 0; i < Matrix_Size; i = i + 1) begin : inputAB
+	always @(*) begin
+		inA_c[i] = inA[i];
+		inB_c[i] = inB[i];
+	end
+end
+endgenerate
+
+// Reset MACs
+generate for (i = 0; i < (Matrix_Size*2)-1; i = i + 1) begin : MACclear
+	always @(posedge clk) begin
+		if (internal_timer == 0) rst[i] <= 1'b1;
+		else rst[i] <= 1'b0;
+	end
+end
+endgenerate
+
+// Output from buffer
+always @(posedge clk) begin
+	if (read) DataOutput <= Buffer[output_address];
+end
+
+// Results to Buffer
+generate for (i = 0; i < 12; i = i + 1) begin : Column0Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i + 2)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 12; i < 24; i = i + 1) begin : Column1Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 9)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 24; i < 36; i = i + 1) begin : Column2Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 20)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 36; i < 48; i = i + 1) begin : Column3Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 31)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 48; i < 60; i = i + 1) begin : Column4Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 42)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 60; i < 72; i = i + 1) begin : Column5Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 53)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 72; i < 84; i = i + 1) begin : Column6Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 64)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 84; i < 96; i = i + 1) begin : Column7Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 75)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 96; i < 108; i = i + 1) begin : Column8Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 86)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 108; i < 120; i = i + 1) begin : Column9Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 97)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 120; i < 132; i = i + 1) begin : Column10Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 108)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+generate for (i = 132; i < 144; i = i + 1) begin : Column11Buffer
+	always @(posedge clk) begin
+		if (reset) Buffer[i] <= 0;
+		else if (internal_timer == (4*blocks + i - 120)) Buffer[i] <= result[i];
+	end
+end
+endgenerate
+
+
+// Instantiate Wires and SYSMACs
+wire signed [(Data_Width-1):0] inLeft[((Matrix_Size*Matrix_Size)-1):0];
+wire signed [(Data_Width-1):0] inTop[((Matrix_Size*Matrix_Size)-1):0];
+
+// 0x0 MAC
+SYSMAC #(Data_Width) mac(.inLeft(inA[0]), .inTop(inB[0]), .clk(clk), .rst(rst[0]), .waitrequest(waitrequest), .outRight(inLeft[0]), .outBottom(inTop[0]), .outResult(result[0]));
+
+// Row 0 MACs minus 0x0 MAC
+generate for (i = 0; i < Matrix_Size-1; i = i + 1) begin : RowZero
+	SYSMAC #(Data_Width) mac(.inLeft(inLeft[i*Matrix_Size]), .inTop(inB[i+1]), .clk(clk), .rst(rst[i+1]), .waitrequest(waitrequest), .outRight(inLeft[(i+1)*Matrix_Size]), .outBottom(inTop[(i+1)*Matrix_Size]), .outResult(result[(i+1)*Matrix_Size]));
+end
+endgenerate
+
+// Column 0 MACs minus 0x0 MAC
+generate for (i = 0; i < Matrix_Size-1; i = i + 1) begin : ColumnZero
+	SYSMAC #(Data_Width) mac(.inLeft(inA[i+1]), .inTop(inTop[i]), .clk(clk), .rst(rst[i+1]), .waitrequest(waitrequest), .outRight(inLeft[i+1]), .outBottom(inTop[i+1]), .outResult(result[i+1]));
+end
+endgenerate
+
+// MACs by column k and row i. no 0x0 MAC
+generate for (k = 0; k < Matrix_Size-1; k = k + 1) begin : RestofMACsone//Column 
+		 for (i = 0; i < Matrix_Size-1; i = i + 1) begin : RestofMacstwo//Row
+			SYSMAC #(Data_Width) mac(.inLeft(inLeft[i+1+(k*Matrix_Size)]), .inTop(inTop[i+Matrix_Size+(k*Matrix_Size)]), .clk(clk), .rst(rst[i+2+k]), .waitrequest(waitrequest), .outRight(inLeft[i+Matrix_Size+1+(k*Matrix_Size)]), .outBottom(inTop[i+Matrix_Size+1+(k*Matrix_Size)]), .outResult(result[i+Matrix_Size+1+(k*Matrix_Size)]));
+	end
+end
+endgenerate
+
+endmodule

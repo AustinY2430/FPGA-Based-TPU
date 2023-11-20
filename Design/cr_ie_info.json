@@ -1,0 +1,22 @@
+{
+	"system" : {
+		"platform" : "linux64",
+		"os_name" : "Red Hat",
+		"os_version" : ""
+	},
+	"error" : {
+		"executable" : "quartus_map",
+		"comment" : "not_applicable",
+		"error_message" : "temp_cap_inst",
+		"source_file" : "/quartus/synth/qsyn/qsyn_cmd.cpp",
+		"line" : "3260",
+		"stack_trace" : "\t   0x44b60f: quartus_map + 0x4b60f (_ZN14QSYN_FRAMEWORK19write_qic_databasesEb + 0xa5f)\n\t   0x44bc49: quartus_map + 0x4bc49 (_ZN14QSYN_FRAMEWORK15write_databasesEb + 0xa9)\n\t0x7f4c1c6620cf: comp_qexe + 0x200cf (_Z18qexe_standard_mainP14QEXE_FRAMEWORKPPK22QEXE_OPTION_DEFINITIONiPPKc + 0x8b5)\n\t   0x43c458: quartus_map + 0x3c458 (_Z9qsyn_mainiPPKc + 0x1e8)\n\t0x7f4bf3809ef0: ccl_msg + 0x49ef0 (_Z15msg_main_threadPv + 0x10)\n\t0x7f4bf0b53d4c: ccl_thr + 0x5d4c (thr_final_wrapper + 0xc)\n\t0x7f4bf3809fa5: ccl_msg + 0x49fa5 (_Z18msg_thread_wrapperPFPvS_ES_ + 0x5b)\n\t   0x46ab3b: quartus_map + 0x6ab3b (_Z18mem_thread_wrapperPFPvS_ES_ + 0x9b)\n\t0x7f4bf0f8edef: ccl_err + 0x8def (_Z18err_thread_wrapperPFPvS_ES_ + 0x27)\n\t0x7f4bf0b54112: ccl_thr + 0x6112 (thr_thread_wrapper + 0x15)\n\t0x7f4bf380bee2: ccl_msg + 0x4bee2 (_Z12msg_exe_mainiPPKcPFiiS1_E + 0xa3)\n\t0x7f4beba3f555: c.so.6 + 0x22555 (__libc_start_main + 0xf5)\n\t   0x420161: quartus_map + 0x20161\n",
+		"subsystem" : "QSYN"
+	},
+	"quartus" : {
+		"quartus_bits" : "64",
+		"version" : "15.0.0",
+		"build" : "145",
+		"edition" : "Full Version"
+	}
+}

@@ -1,0 +1,47 @@
+module SYSMAC
+#(parameter Data_Width=8)
+(
+
+	input signed [(Data_Width-1):0] inLeft,
+	input signed [(Data_Width-1):0] inTop,
+	input clk,
+	input rst,
+	input waitrequest,
+	
+	output reg signed [(Data_Width-1):0] outRight = 0,
+	output reg signed [(Data_Width-1):0] outBottom = 0,
+	output reg signed [24:0] outResult = 0
+	
+);
+
+reg signed [7:0] outRight_c;
+reg signed [7:0] outBottom_c;
+reg signed [24:0] outResult_c;
+
+always @(posedge clk) begin
+	if (rst) begin
+		outResult <= 25'd0;
+		outRight <= 8'd0;
+		outBottom <= 8'd0;
+	end
+	else if (waitrequest) begin
+		outResult <= outResult_c;
+		outRight <= outRight;
+		outBottom <= outBottom;
+	end
+	else begin
+		outResult <= outResult_c;
+		outRight <= inLeft;
+		outBottom <= inTop;
+	end
+
+end
+
+always @(*) begin
+	if (rst) outResult_c = 25'd0;
+	else if (waitrequest) outResult_c = outResult;
+	else outResult_c = (inLeft * inTop) + outResult;
+end
+endmodule
+
+
