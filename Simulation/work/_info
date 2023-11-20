@@ -1,0 +1,131 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1/modelsim_ase/win32aloem
+vFinalDesign
+Z0 !s110 1684983354
+!i10b 1
+!s100 Z:f1LLnj_^gDz=]Qm^C130
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IGI>E=XD]G?<<B>IzM9^UU2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/Kille/Desktop/Simulation
+w1684910121
+8C:\Users\Kille\Desktop\Simulation\FinalDesign.v
+FC:\Users\Kille\Desktop\Simulation\FinalDesign.v
+!i122 467
+L0 1 312
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1684983354.000000
+!s107 C:\Users\Kille\Desktop\Simulation\FinalDesign.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\Kille\Desktop\Simulation\FinalDesign.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+n@final@design
+vNewAdd
+R0
+!i10b 1
+!s100 31dUje1jIL`L?OaCfdO413
+R1
+IlS9cUZ5HW[[3N>b;>il4Y3
+R2
+R3
+w1683479967
+8C:/Users/Kille/Desktop/Simulation/NewAdd.v
+FC:/Users/Kille/Desktop/Simulation/NewAdd.v
+!i122 468
+L0 40 36
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/Kille/Desktop/Simulation/NewAdd.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Kille/Desktop/Simulation/NewAdd.v|
+!i113 1
+R6
+R7
+n@new@add
+vSYSMAC
+R0
+!i10b 1
+!s100 jQ@RF>R=ER19zPV9K;9:Z3
+R1
+IURkE2NJ?R[c^FGEijd9GQ0
+R2
+R3
+w1684606568
+8C:/Users/Kille/Desktop/Simulation/SYSMAC.v
+FC:/Users/Kille/Desktop/Simulation/SYSMAC.v
+!i122 469
+L0 1 53
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/Kille/Desktop/Simulation/SYSMAC.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Kille/Desktop/Simulation/SYSMAC.v|
+!i113 1
+R6
+R7
+n@s@y@s@m@a@c
+vtb_FinalDesign
+R0
+!i10b 1
+!s100 ?94Sd>7]gJbIR7>F;<kBH0
+R1
+IL_0>OQA3En`G2Gglk6:110
+R2
+R3
+w1684983351
+8C:\Users\Kille\Desktop\Simulation\tb_FinalDesign.v
+FC:\Users\Kille\Desktop\Simulation\tb_FinalDesign.v
+!i122 470
+L0 4 69
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:\Users\Kille\Desktop\Simulation\tb_FinalDesign.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\Kille\Desktop\Simulation\tb_FinalDesign.v|
+!i113 1
+R6
+R7
+ntb_@final@design
+vTPU8
+R0
+!i10b 1
+!s100 RDM0DgICNG8?k34^JzQ3Y0
+R1
+I3SHfF<SH_`g0ChZbK<Y=M1
+R2
+R3
+w1684907970
+8C:/Users/Kille/Desktop/Simulation/TPU8.v
+FC:/Users/Kille/Desktop/Simulation/TPU8.v
+!i122 471
+L0 2 560
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/Kille/Desktop/Simulation/TPU8.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Kille/Desktop/Simulation/TPU8.v|
+!i113 1
+R6
+R7
+n@t@p@u8
