@@ -1,0 +1,17 @@
+Partition Merge Status : Successful - Fri May 12 21:17:30 2023
+Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Standard Edition
+Revision Name : FinalDesign
+Top-level Entity Name : FinalDesign
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 8365
+Total pins : 73
+Total virtual pins : 0
+Total block memory bits : 131,072
+Total DSP Blocks : 64
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 1
+Total DLLs : 1
