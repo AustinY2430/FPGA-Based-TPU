@@ -1,0 +1,57 @@
+
+State Machine - |FinalDesign|next_state
+Name next_state.001110 next_state.001101 next_state.001100 next_state.001011 next_state.001010 next_state.001001 next_state.001000 next_state.000111 next_state.000110 next_state.000101 next_state.000100 next_state.000011 next_state.000010 next_state.000001 next_state.000000 
+next_state.000000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+next_state.000001 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+next_state.000010 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+next_state.000011 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+next_state.000100 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+next_state.000101 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+next_state.000110 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+next_state.000111 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+next_state.001000 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+next_state.001001 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+next_state.001010 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+next_state.001011 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+next_state.001100 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+next_state.001101 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+next_state.001110 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |FinalDesign|state
+Name state.001110 state.001101 state.001100 state.001011 state.001010 state.001001 state.001000 state.000111 state.000110 state.000101 state.000100 state.000011 state.000010 state.000001 state.000000 
+state.000000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.000001 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.000010 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.000011 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.000100 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.000101 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.000110 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.000111 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.001000 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.001001 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.001010 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.001011 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.001100 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.001101 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.001110 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |FinalDesign|systemfinal:u0|systemfinal_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:control_to_fpga_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |FinalDesign|systemfinal:u0|systemfinal_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:control_to_hps_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |FinalDesign|systemfinal:u0|systemfinal_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onship_sram_s2_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
